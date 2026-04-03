@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/meetassistant}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+    consumer:
+      group-id: meet-assistant
+      auto-offset-reset: earliest
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${SMTP_AUTH:false}
+          starttls:
+            enable: ${SMTP_STARTTLS:true}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+
+app:
+  gemini:
+    apiKey: ${GEMINI_API_KEY:}
+    model: gemini-1.5-flash
+  kafka:
+    topicMeetingEnded: meeting-ended
+    topicSummaryReady: meeting-summary-ready
+  email:
+    from: ${SMTP_FROM:no-reply@meetassistant.local}
